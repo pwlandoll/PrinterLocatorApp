@@ -26,7 +26,9 @@ public class MainActivity extends AppCompatActivity {
             is = url.openStream();
             br = new BufferedReader(new InputStreamReader(is));
             while ((line = br.readLine()) != null) {
-                if ()
+                if (line.contains("<td>")) {
+
+                }
             }
         } catch (Exception ex) {
 
