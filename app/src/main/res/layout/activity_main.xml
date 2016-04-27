@@ -9,8 +9,15 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="edu.jcu.plandoll16.printerlocator.MainActivity">
 
-    <TextView
+    <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:id="@+id/scrollView" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/testTextView"
+            android:text="Test" />
+    </ScrollView>
 </RelativeLayout>
