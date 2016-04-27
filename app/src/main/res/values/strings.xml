@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Printer Locator</string>
+    <string name="banner">Locate the nearest printer!</string>
+    <string name="findNearestPrinter">Find nearest printers</string>
+    <string name="help">For help or support, email plandoll16@jcu.edu.</string>
+    <string name="listAllPrinters">List all available printers</string>
+    <string name="locationNotice">
+        This app prefers to have GPS enabled on your device.
+        To ensure accurate measurements, please make sure that location services are enabled.
+    </string>
 </resources>
