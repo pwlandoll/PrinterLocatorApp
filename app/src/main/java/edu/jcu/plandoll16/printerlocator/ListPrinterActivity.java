@@ -1,5 +1,6 @@
 package edu.jcu.plandoll16.printerlocator;
 
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -63,13 +64,19 @@ public class ListPrinterActivity extends AppCompatActivity {
         }
         // We don't need the header row of the CSV, so remove it
         fileContents.remove(0);
-        // <test>
         for (String[] printerInfoArray : fileContents) {
-            text = text + printerInfoArray[0] + "\n";
-            printerArrayList.add(new Printer(printerInfoArray[0])); //NOT TEST
+            // TODO: implement checks against printer list
+            // if the printer with name printerInfoArray[0] is in the list populated by the
+            //  database, then update that printer with status code printerInfoArray[2]?
+            //printerArrayList.add(new Printer(printerInfoArray[0]));
         }
-        test.setText(text);
-        // </test>
+    }
+
+    /**
+     * Pulls records from the database and adds them to the list of printers.
+     */
+    private void populatePrinterList() {
+
     }
 
     /**
@@ -78,6 +85,7 @@ public class ListPrinterActivity extends AppCompatActivity {
     private class getCSVRunnable implements Runnable {
         @Override
         public void run() {
+            Looper.prepare();
             try {
                 // Open a scanner that pulls the CSV and opens with UTF-16 character encodings
                 Scanner mScanner = new Scanner(new URL("http://stuweb.jcu.edu/printerstatus2.csv").openStream(), "UTF-16");
