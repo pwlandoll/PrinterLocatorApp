@@ -20,7 +20,6 @@ public class Printer {
      * Default name is "printer", location is the middle of the Admin building
      */
     public Printer() {
-        // Default name is "printer", location is middle of the Admin building
         this("printer", 41.490150, -81.531329);
     }
 

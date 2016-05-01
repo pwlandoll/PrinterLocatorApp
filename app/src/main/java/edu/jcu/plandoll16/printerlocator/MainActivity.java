@@ -34,4 +34,9 @@ public class MainActivity extends AppCompatActivity {
         Intent mIntent = new Intent(view.getContext(), ListPrinterActivity.class);
         startActivity(mIntent);
     }
+
+    public void findNearestPrinter(View view) {
+        Intent mIntent = new Intent(view.getContext(), FindNearestPrinterActivity.class);
+        startActivity(mIntent);
+    }
 }

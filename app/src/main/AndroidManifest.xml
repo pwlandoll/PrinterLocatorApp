@@ -3,6 +3,8 @@
     package="edu.jcu.plandoll16.printerlocator">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -17,7 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ListPrinterActivity"></activity>
+        <activity android:name=".ListPrinterActivity" />
+        <activity android:name=".FindNearestPrinterActivity"></activity>
     </application>
 
 </manifest>
