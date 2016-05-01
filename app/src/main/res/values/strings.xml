@@ -9,5 +9,8 @@
         This app prefers to have GPS enabled on your device.
         To ensure accurate measurements, please make sure that location services are enabled.
     </string>
+    <string name="more">More info</string>
+    <string name="printerDes">Printer Description:</string>
+    <string name="printerName">Printer Name:</string>
     <string name="wait">Waiting for location data…</string>
 </resources>

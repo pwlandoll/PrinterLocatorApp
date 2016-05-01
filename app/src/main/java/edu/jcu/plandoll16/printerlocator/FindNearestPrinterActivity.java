@@ -1,12 +1,15 @@
 package edu.jcu.plandoll16.printerlocator;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +21,7 @@ import java.util.ArrayList;
  * @since 2016-4-30
  */
 public class FindNearestPrinterActivity extends AppCompatActivity implements LocationListener {
+    LinearLayout printerLinearLayout;
     LocationManager mLocationManager;
     PrinterHelper mPrinterHelper;
     TextView waitTextView;
@@ -28,6 +32,7 @@ public class FindNearestPrinterActivity extends AppCompatActivity implements Loc
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_nearest_printer);
 
+        printerLinearLayout = (LinearLayout)findViewById(R.id.printerLinearLayout);
         mLocationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         mPrinterHelper = new PrinterHelper();
         waitTextView = (TextView)findViewById(R.id.waitTextView);
@@ -58,7 +63,7 @@ public class FindNearestPrinterActivity extends AppCompatActivity implements Loc
      * @param location1Longitude longitude of location 1
      * @param location2Latitude latitude of location 2
      * @param location2longitude latitude of location 2
-     * @return
+     * @return the Euclidean distance between location 1 and location 2 (converted to feet)
      */
     private Double distance(double location1Latitude, double location1Longitude, double location2Latitude, double location2longitude) {
         double latD = Math.pow((364605 * (location1Latitude - location2Latitude)), 2);
@@ -72,13 +77,34 @@ public class FindNearestPrinterActivity extends AppCompatActivity implements Loc
      * @param location user's location used for calculating distances
      */
     private void locationFound(Location location) {
+        // Change top text since location is found, then proceed to calculate distances
         waitTextView.setText(getResources().getString(R.string.found));
-        ArrayList<Double> distances = new ArrayList<Double>();
-        ArrayList<Printer> printerArrayList = mPrinterHelper.getPrinterArrayList();
-        for (Printer p : printerArrayList) {
-            distances.add(distance(location.getLatitude(), location.getLongitude(), p.getLocationLatitude(), p.getLocationLongitude()));
+        // We only want available printers here, not all printers
+        // TODO: Fix issue where this line executes before mPrinterHelper can complete the handleCSVString method
+        ArrayList<Printer> availablePrinters = mPrinterHelper.getAvailablePrinters();
+        for (Printer p : availablePrinters) {
+            p.setDistance(distance(location.getLatitude(), location.getLongitude(), p.getLocationLatitude(), p.getLocationLongitude()));
         }
-        // TODO: Find smallest distance
+        int smallestIndex = 0;
+        double smallestDistance = availablePrinters.get(0).getDistance();
+        for (int i = 0; i < availablePrinters.size(); i++) {
+            if (availablePrinters.get(i).getDistance() < smallestDistance) {
+                smallestIndex = i;
+            }
+        }
+        // Closest printer is availablePrinters.get(smallestIndex)
+        final Printer closestPrinter = availablePrinters.get(smallestIndex);
+        LinearLayout mLayout = closestPrinter.getPrinterLayout(getBaseContext());
+        mLayout.getChildAt(1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mIntent = new Intent(getApplicationContext(), DisplayPrinterActivity.class);
+                mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.printerName", closestPrinter.getName());
+                mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.printerDescription", closestPrinter.getDescription());
+                startActivity(mIntent);
+            }
+        });
+        printerLinearLayout.addView(mLayout);
     }
 
     /**

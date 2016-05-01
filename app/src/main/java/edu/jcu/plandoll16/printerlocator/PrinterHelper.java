@@ -56,11 +56,14 @@ public class PrinterHelper {
         }
         // We don't need the header row of the CSV, so remove it
         fileContents.remove(0);
+        Printer p;
         for (String[] printerInfoArray : fileContents) {
             // TODO: implement checks against printer list
             // if the printer with name printerInfoArray[0] is in the list populated by the
             //  database, then update that printer with status code printerInfoArray[2]
-            //printerArrayList.add(new Printer(printerInfoArray[0]));
+            p = new Printer(printerInfoArray[0]);
+            p.setStatusCode(0);
+            printerArrayList.add(new Printer(printerInfoArray[0]));
         }
         // TODO: sort printerArrayList before display?
     }
@@ -91,6 +94,25 @@ public class PrinterHelper {
                 Log.e("PROBLEM", ex.getMessage());
             }
         }
+    }
+
+    /**
+     * returns an ArrayList of printers that are "available" i.e. status code is 0
+     *
+     * @return ArrayList of printers with status code 0
+     */
+    public ArrayList<Printer> getAvailablePrinters() {
+        ArrayList<Printer> availablePrinters = new ArrayList<Printer>();
+        for (Printer p : printerArrayList) {
+            if (p.getStatusCode() == 0) {
+                availablePrinters.add(p);
+            }
+        }
+        if (availablePrinters.size() == 0) {
+            Printer p = new Printer("test printer");
+            availablePrinters.add(p);
+        }
+        return availablePrinters;
     }
 
     public ArrayList<Printer> getPrinterArrayList() {

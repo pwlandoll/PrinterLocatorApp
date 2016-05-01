@@ -1,5 +1,11 @@
 package edu.jcu.plandoll16.printerlocator;
 
+import android.content.Context;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
 /**
  * Printer class.
  *
@@ -10,9 +16,9 @@ package edu.jcu.plandoll16.printerlocator;
  * @since 2016-4-12
  */
 public class Printer {
-    private double locationLatitude, locationLongitude;
-    private int statusCode;
-    private String name;
+    private double locationLatitude, locationLongitude, distance;
+    private int id, statusCode;
+    private String name, description;
 
     /**
      * Constructor.
@@ -20,7 +26,7 @@ public class Printer {
      * Default name is "printer", location is the middle of the Admin building
      */
     public Printer() {
-        this("printer", 41.490150, -81.531329);
+        this(0, "printer", 41.490150, -81.531329);
     }
 
     /**
@@ -30,7 +36,7 @@ public class Printer {
      * @param name name of the printer
      */
     public Printer(String name) {
-        this(name, 41.490150, -81.531329);
+        this(0, name, 41.490150, -81.531329);
     }
 
     /**
@@ -40,11 +46,33 @@ public class Printer {
      * @param locationLatitude latitude of the location of the printer
      * @param locationLongitude longitude of the location of the printer
      */
-    public Printer(String name, double locationLatitude, double locationLongitude) {
+    public Printer(int id, String name, double locationLatitude, double locationLongitude) {
+        this.id = id;
         this.name = name;
         this.locationLatitude = locationLatitude;
         this.locationLongitude = locationLongitude;
+        // Default status code is 0
+        this.statusCode = 0;
     }
+
+    public LinearLayout getPrinterLayout(Context context) {
+        LinearLayout layout = new LinearLayout(context);
+        // Create layout to fill width of screen, but to only be as tall as necessary
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutParams.weight = 1;
+        layout.setLayoutParams(layoutParams);
+        // Create view with a TextView for the name, and a Button to show more info
+        TextView nameText = new TextView(context);
+        nameText.setText(name);
+        Button moreButton = new Button(context);
+        moreButton.setText(R.string.more);
+        layout.addView(nameText);
+        layout.addView(moreButton);
+        return layout;
+    }
+
+    // Getters and Setters follow
 
     public double getLocationLatitude() {
         return locationLatitude;
@@ -62,6 +90,14 @@ public class Printer {
         this.locationLongitude = locationLongitude;
     }
 
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
     public int getStatusCode() {
         return statusCode;
     }
@@ -76,5 +112,13 @@ public class Printer {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

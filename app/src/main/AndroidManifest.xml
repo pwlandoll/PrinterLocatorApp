@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ListPrinterActivity" />
-        <activity android:name=".FindNearestPrinterActivity"></activity>
+        <activity android:name=".FindNearestPrinterActivity" />
+        <activity android:name=".DisplayPrinterActivity"></activity>
     </application>
 
 </manifest>
