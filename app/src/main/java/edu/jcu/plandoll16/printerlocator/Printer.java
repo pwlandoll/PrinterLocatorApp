@@ -17,7 +17,8 @@ import android.widget.TextView;
  */
 public class Printer {
     private double locationLatitude, locationLongitude, distance;
-    private int id, statusCode;
+    private int id;
+    private Integer statusCode;
     private String name, description;
 
     /**
@@ -114,11 +115,11 @@ public class Printer {
         this.id = id;
     }
 
-    public int getStatusCode() {
+    public Integer getStatusCode() {
         return statusCode;
     }
 
-    public void setStatusCode(int statusCode) {
+    public void setStatusCode(Integer statusCode) {
         this.statusCode = statusCode;
     }
 

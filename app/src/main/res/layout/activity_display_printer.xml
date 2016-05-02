@@ -29,12 +29,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/printerNameTextView"
-            android:layout_column="1"
-            android:text="TEST PRINTER NAME" />
+            android:layout_column="1" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/statusCode"
+            android:id="@+id/statusLabelTextView"
+            android:layout_margin="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/printerStatusCodeTextView" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
         <TextView
             android:text="@string/printerDes"
@@ -49,7 +65,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/printerDesTextView"
-            android:layout_column="1"
-            android:text="This is a test printer description.  This is a test printer description.  This is a test printer description. " />
+            android:layout_column="1" />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/help"
+        android:id="@+id/helpTextView"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

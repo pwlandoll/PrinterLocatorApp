@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * @version 0.1
  * @since 2016-4-27
  */
-public class ListPrinterActivity extends AppCompatActivity {
+public class ListAllPrintersActivity extends AppCompatActivity {
     LinearLayout printerListLinearLayout;
     PrinterHelper mPrinterHelper;
 
@@ -39,7 +39,7 @@ public class ListPrinterActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent mIntent = new Intent(getApplicationContext(), DisplayPrinterActivity.class);
                     mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.printerName", mPrinter.getName());
-                    // TODO: add status code
+                    mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.printerStatusCode", mPrinter.getStatusCode().toString());
                     mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.printerDescription", mPrinter.getDescription());
                     startActivity(mIntent);
                 }

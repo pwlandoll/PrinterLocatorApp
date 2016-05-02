@@ -80,7 +80,6 @@ public class FindNearestPrinterActivity extends AppCompatActivity implements Loc
         // Change top text since location is found, then proceed to calculate distances
         waitTextView.setText(R.string.found);
         // We only want available printers here, not all printers
-        // TODO: Fix issue where this line executes before mPrinterHelper can complete the handleCSVString method
         ArrayList<Printer> availablePrinters = mPrinterHelper.getAvailablePrinters();
         for (Printer p : availablePrinters) {
             p.setDistance(distance(location.getLatitude(), location.getLongitude(), p.getLocationLatitude(), p.getLocationLongitude()));
@@ -101,13 +100,14 @@ public class FindNearestPrinterActivity extends AppCompatActivity implements Loc
         // Closest printer is availablePrinters.get(smallestIndex)
         final Printer closestPrinter = availablePrinters.get(smallestIndex);
         LinearLayout mLayout = closestPrinter.getPrinterLayout(getBaseContext());
+        // Default text color isn't actually black?
         ((TextView)mLayout.getChildAt(0)).setTextColor(getResources().getColor(R.color.black));
         mLayout.getChildAt(1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent mIntent = new Intent(getApplicationContext(), DisplayPrinterActivity.class);
                 mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.printerName", closestPrinter.getName());
-                // TODO: add status code
+                mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.printerStatusCode", closestPrinter.getStatusCode().toString());
                 mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.printerDescription", closestPrinter.getDescription());
                 startActivity(mIntent);
             }

@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ListPrinterActivity" />
+        <activity android:name=".ListAllPrintersActivity" />
         <activity android:name=".FindNearestPrinterActivity" />
         <activity android:name=".DisplayPrinterActivity"></activity>
     </application>

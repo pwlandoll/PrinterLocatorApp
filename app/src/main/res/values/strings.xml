@@ -14,5 +14,6 @@
     <string name="none">No nearby printers found. Please check your Internet connection.</string>
     <string name="printerDes">Printer Description:</string>
     <string name="printerName">Printer Name:</string>
+    <string name="statusCode">Printer Status Code:</string>
     <string name="wait">Waiting for location data…</string>
 </resources>

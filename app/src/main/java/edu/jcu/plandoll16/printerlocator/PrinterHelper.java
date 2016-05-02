@@ -64,7 +64,7 @@ public class PrinterHelper {
             // if the printer with name printerInfoArray[0] is in the list populated by the
             //  database, then update that printer with status code printerInfoArray[2]
             p = new Printer(printerInfoArray[0]);
-            p.setStatusCode(0);
+            p.setStatusCode(Integer.parseInt(printerInfoArray[2]));
             printerArrayList.add(new Printer(printerInfoArray[0]));
         }
         // TODO: sort printerArrayList before display?
