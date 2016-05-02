@@ -78,7 +78,7 @@ public class FindNearestPrinterActivity extends AppCompatActivity implements Loc
      */
     private void locationFound(Location location) {
         // Change top text since location is found, then proceed to calculate distances
-        waitTextView.setText(getResources().getString(R.string.found));
+        waitTextView.setText(R.string.found);
         // We only want available printers here, not all printers
         // TODO: Fix issue where this line executes before mPrinterHelper can complete the handleCSVString method
         ArrayList<Printer> availablePrinters = mPrinterHelper.getAvailablePrinters();
@@ -86,6 +86,12 @@ public class FindNearestPrinterActivity extends AppCompatActivity implements Loc
             p.setDistance(distance(location.getLatitude(), location.getLongitude(), p.getLocationLatitude(), p.getLocationLongitude()));
         }
         int smallestIndex = 0;
+        if (availablePrinters.size() == 0) {
+            // In this case, PrinterHelper failed to make a list of any available printers
+            // Serves as error handling for the .join() in PrinterHelper's fetchPrinterList
+            waitTextView.setText(R.string.none);
+            return;
+        }
         double smallestDistance = availablePrinters.get(0).getDistance();
         for (int i = 0; i < availablePrinters.size(); i++) {
             if (availablePrinters.get(i).getDistance() < smallestDistance) {
@@ -95,11 +101,13 @@ public class FindNearestPrinterActivity extends AppCompatActivity implements Loc
         // Closest printer is availablePrinters.get(smallestIndex)
         final Printer closestPrinter = availablePrinters.get(smallestIndex);
         LinearLayout mLayout = closestPrinter.getPrinterLayout(getBaseContext());
+        ((TextView)mLayout.getChildAt(0)).setTextColor(getResources().getColor(R.color.black));
         mLayout.getChildAt(1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent mIntent = new Intent(getApplicationContext(), DisplayPrinterActivity.class);
                 mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.printerName", closestPrinter.getName());
+                // TODO: add status code
                 mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.printerDescription", closestPrinter.getDescription());
                 startActivity(mIntent);
             }

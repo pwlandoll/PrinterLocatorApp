@@ -34,6 +34,8 @@ public class PrinterHelper {
         try {
             Thread getCSV = new Thread(new getCSVRunnable());
             getCSV.start();
+            // Wait a maximum of 10 seconds for the thread to finish, error handling comes later
+            getCSV.join(10 * 1000);
         } catch (Exception ex) {
             Log.e("PROBLEM", ex.getMessage());
         }
@@ -107,10 +109,6 @@ public class PrinterHelper {
             if (p.getStatusCode() == 0) {
                 availablePrinters.add(p);
             }
-        }
-        if (availablePrinters.size() == 0) {
-            Printer p = new Printer("test printer");
-            availablePrinters.add(p);
         }
         return availablePrinters;
     }

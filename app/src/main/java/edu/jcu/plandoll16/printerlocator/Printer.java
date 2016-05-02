@@ -53,8 +53,14 @@ public class Printer {
         this.locationLongitude = locationLongitude;
         // Default status code is 0
         this.statusCode = 0;
+        this.description = "";
     }
 
+    /**
+     * creates a LinearLayout with the printer's name and a button that can be set to launch an activity
+     * @param context used for creating views
+     * @return LinearLayout containing a TextView and Button
+     */
     public LinearLayout getPrinterLayout(Context context) {
         LinearLayout layout = new LinearLayout(context);
         // Create layout to fill width of screen, but to only be as tall as necessary
@@ -65,10 +71,12 @@ public class Printer {
         // Create view with a TextView for the name, and a Button to show more info
         TextView nameText = new TextView(context);
         nameText.setText(name);
+        nameText.setLayoutParams(layoutParams);
         Button moreButton = new Button(context);
         moreButton.setText(R.string.more);
-        layout.addView(nameText);
-        layout.addView(moreButton);
+        moreButton.setLayoutParams(layoutParams);
+        layout.addView(nameText, 0);
+        layout.addView(moreButton, 1);
         return layout;
     }
 
@@ -96,6 +104,14 @@ public class Printer {
 
     public void setDistance(double distance) {
         this.distance = distance;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getStatusCode() {

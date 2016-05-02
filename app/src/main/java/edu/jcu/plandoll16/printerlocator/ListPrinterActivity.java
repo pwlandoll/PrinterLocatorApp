@@ -1,15 +1,14 @@
 package edu.jcu.plandoll16.printerlocator;
 
-import android.os.Looper;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * @author Peter Landoll
@@ -17,14 +16,36 @@ import java.util.Scanner;
  * @since 2016-4-27
  */
 public class ListPrinterActivity extends AppCompatActivity {
+    LinearLayout printerListLinearLayout;
     PrinterHelper mPrinterHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_printer);
+        setContentView(R.layout.activity_list_all_printers);
 
+        printerListLinearLayout = (LinearLayout)findViewById(R.id.printerListLinearLayout);
         mPrinterHelper = new PrinterHelper();
+
+        LinearLayout mLayout;
+        ArrayList<Printer> allPrinters = mPrinterHelper.getPrinterArrayList();
+        for (Printer p : allPrinters) {
+            // mPrinter must be final so the onClick method in the listener can access it
+            final Printer mPrinter = p;
+            mLayout = mPrinter.getPrinterLayout(getBaseContext());
+            ((TextView)mLayout.getChildAt(0)).setTextColor(getResources().getColor(R.color.black));
+            mLayout.getChildAt(1).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent mIntent = new Intent(getApplicationContext(), DisplayPrinterActivity.class);
+                    mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.printerName", mPrinter.getName());
+                    // TODO: add status code
+                    mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.printerDescription", mPrinter.getDescription());
+                    startActivity(mIntent);
+                }
+            });
+            printerListLinearLayout.addView(mLayout);
+        }
     }
 
 }

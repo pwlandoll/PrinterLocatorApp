@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Printer Locator</string>
+    <string name="allPrinters">All printers (scroll to see more)</string>
     <string name="banner">Locate the nearest printer!</string>
     <string name="findNearestPrinter">Find nearest printers</string>
     <string name="found">Nearest printer found:</string>
@@ -10,6 +11,7 @@
         To ensure accurate measurements, please make sure that location services are enabled.
     </string>
     <string name="more">More info</string>
+    <string name="none">No nearby printers found. Please check your Internet connection.</string>
     <string name="printerDes">Printer Description:</string>
     <string name="printerName">Printer Name:</string>
     <string name="wait">Waiting for location data…</string>
