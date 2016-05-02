@@ -25,7 +25,8 @@
         android:layout_below="@+id/allPrintersTextView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:fillViewport="false" >
+        android:fillViewport="false"
+        android:layout_above="@+id/helpTextView">
 
         <LinearLayout
             android:orientation="vertical"
