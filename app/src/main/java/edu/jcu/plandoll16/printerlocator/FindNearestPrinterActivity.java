@@ -39,8 +39,7 @@ public class FindNearestPrinterActivity extends AppCompatActivity implements Loc
         securityErrorToast = Toast.makeText(getBaseContext(), "App is unable to access location " +
                 "services - please enable location services and try again.", Toast.LENGTH_LONG);
 
-        // try/catch necessary for permission errors?
-        // TODO: downgrade? target API
+        // TODO: try/catch necessary for permission errors?
         try {
             Location location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             if (location != null && location.getTime() > System.currentTimeMillis() - 2 * 60 * 1000) {
@@ -107,7 +106,6 @@ public class FindNearestPrinterActivity extends AppCompatActivity implements Loc
             public void onClick(View v) {
                 Intent mIntent = new Intent(getApplicationContext(), DisplayPrinterActivity.class);
                 mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.printerName", closestPrinter.getName());
-                mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.printerStatusCode", closestPrinter.getStatusCode().toString());
                 mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.printerDescription", closestPrinter.getDescription());
                 startActivity(mIntent);
             }

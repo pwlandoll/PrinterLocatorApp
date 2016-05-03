@@ -28,7 +28,7 @@ public class ListAllPrintersActivity extends AppCompatActivity {
         mPrinterHelper = new PrinterHelper();
 
         LinearLayout mLayout;
-        ArrayList<Printer> allPrinters = mPrinterHelper.getPrinterArrayList();
+        ArrayList<Printer> allPrinters = mPrinterHelper.getAvailablePrinters();
         for (Printer p : allPrinters) {
             // mPrinter must be final so the onClick method in the listener can access it
             final Printer mPrinter = p;
@@ -39,7 +39,6 @@ public class ListAllPrintersActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent mIntent = new Intent(getApplicationContext(), DisplayPrinterActivity.class);
                     mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.printerName", mPrinter.getName());
-                    mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.printerStatusCode", mPrinter.getStatusCode().toString());
                     mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.printerDescription", mPrinter.getDescription());
                     startActivity(mIntent);
                 }

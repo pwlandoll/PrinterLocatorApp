@@ -15,10 +15,9 @@ import android.widget.TextView;
  * @version 0.1
  * @since 2016-4-12
  */
-public class Printer {
+public class Printer implements Comparable<Printer> {
     private double locationLatitude, locationLongitude, distance;
-    private int id;
-    private Integer statusCode;
+    private int id, statusCode;
     private String name, description;
 
     /**
@@ -55,6 +54,17 @@ public class Printer {
         // Default status code is 0
         this.statusCode = 0;
         this.description = "";
+    }
+
+    /**
+     * method from Comparable to compare two printers by name, alphabetically
+     *
+     * @param another Printer to compare against
+     * @return comparison for which Printer's name comes first alphabetically
+     */
+    @Override
+    public int compareTo(Printer another) {
+        return name.compareToIgnoreCase(another.getName());
     }
 
     /**
@@ -115,11 +125,11 @@ public class Printer {
         this.id = id;
     }
 
-    public Integer getStatusCode() {
+    public int getStatusCode() {
         return statusCode;
     }
 
-    public void setStatusCode(Integer statusCode) {
+    public void setStatusCode(int statusCode) {
         this.statusCode = statusCode;
     }
 

@@ -19,7 +19,6 @@
         <TextView
             android:text="@string/printerName"
             android:id="@+id/nameLabelTextView"
-            android:layout_column="0"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_margin="5dp"
             android:layout_height="wrap_content"
@@ -28,25 +27,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/printerNameTextView"
-            android:layout_column="1" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/statusCode"
-            android:id="@+id/statusLabelTextView"
-            android:layout_margin="5dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/printerStatusCodeTextView" />
+            android:id="@+id/printerNameTextView" />
 
         <Space
             android:layout_width="match_parent"
@@ -55,7 +36,6 @@
         <TextView
             android:text="@string/printerDes"
             android:id="@+id/desLabelTextView"
-            android:layout_column="0"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_margin="5dp"
             android:layout_height="wrap_content"
@@ -64,8 +44,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/printerDesTextView"
-            android:layout_column="1" />
+            android:id="@+id/printerDesTextView" />
     </LinearLayout>
 
     <TextView
