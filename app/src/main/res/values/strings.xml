@@ -5,6 +5,9 @@
     <string name="findNearestPrinter">Find nearest printers</string>
     <string name="found">Nearest printer found:</string>
     <string name="help">For help or support, email plandoll16@jcu.edu.</string>
+    <string name="helpAndReport">
+        For help or support, email plandoll16@jcu.edu.\nIf there is a problem with the printer, please contact the ITS Helpdesk at helpdesk@jcu.edu or (216) 397-3005.
+    </string>
     <string name="listAllPrinters">List all available printers</string>
     <string name="locationNotice">
         This app prefers to have GPS enabled on your device.

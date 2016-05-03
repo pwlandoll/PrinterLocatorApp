@@ -65,7 +65,7 @@ public class PrinterHelper {
             //  database, then update that printer with status code printerInfoArray[2]
             p = new Printer(printerInfoArray[0]);
             p.setStatusCode(Integer.parseInt(printerInfoArray[2]));
-            printerArrayList.add(new Printer(printerInfoArray[0]));
+            printerArrayList.add(p);
         }
         // TODO: sort printerArrayList before display?
     }
