@@ -18,7 +18,7 @@ import android.widget.TextView;
 public class Printer implements Comparable<Printer> {
     private double locationLatitude, locationLongitude, distance;
     private int id, statusCode;
-    private String name, description;
+    private String name, description, building;
 
     /**
      * Constructor.
@@ -54,6 +54,7 @@ public class Printer implements Comparable<Printer> {
         // Default status code is 0
         this.statusCode = 0;
         this.description = "";
+        this.building = "";
     }
 
     /**
@@ -147,5 +148,13 @@ public class Printer implements Comparable<Printer> {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(String building) {
+        this.building = building;
     }
 }
