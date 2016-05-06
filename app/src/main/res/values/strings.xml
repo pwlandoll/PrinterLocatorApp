@@ -1,20 +1,28 @@
 <resources>
     <string name="app_name">Printer Locator</string>
+    <string name="admin">Admin</string>
+    <string name="allBuildings">All buildings</string>
     <string name="allPrinters">All printers (scroll to see more)</string>
     <string name="banner">Locate the nearest printer!</string>
+    <string name="boler">Boler</string>
+    <string name="chooseBuilding">Choose to filter by building:</string>
+    <string name="dolan">Dolan</string>
     <string name="findNearestPrinter">Find nearest printers</string>
     <string name="found">Nearest printer found:</string>
     <string name="help">For help or support, email plandoll16@jcu.edu.</string>
     <string name="helpAndReport">
         For help or support, email plandoll16@jcu.edu.\nIf there is a problem with the printer, please contact the ITS Helpdesk at helpdesk@jcu.edu or (216) 397-3005.
     </string>
+    <string name="library">Library</string>
     <string name="listAllPrinters">List all available printers</string>
     <string name="locationNotice">
         This app prefers to have GPS enabled on your device.
         To ensure accurate measurements, please make sure that location services are enabled.
     </string>
+    <string name="lsc">LSC</string>
     <string name="more">More info</string>
     <string name="none">No nearby printers found. Please check your Internet connection.</string>
+    <string name="omalley">O'Malley</string>
     <string name="printerDes">Printer Description:</string>
     <string name="printerName">Printer Name:</string>
     <string name="statusCode">Printer Status Code:</string>

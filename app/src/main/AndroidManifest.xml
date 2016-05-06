@@ -21,7 +21,8 @@
         </activity>
         <activity android:name=".ListAllPrintersActivity" />
         <activity android:name=".FindNearestPrinterActivity" />
-        <activity android:name=".DisplayPrinterActivity"></activity>
+        <activity android:name=".DisplayPrinterActivity" />
+        <activity android:name=".AllPrinterFilterActivity"></activity>
     </application>
 
 </manifest>
