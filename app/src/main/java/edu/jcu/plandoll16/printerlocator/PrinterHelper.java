@@ -1,8 +1,15 @@
 package edu.jcu.plandoll16.printerlocator;
 
+import android.content.Context;
 import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,14 +22,19 @@ import java.util.Scanner;
  * @since 2016-4-30
  */
 public class PrinterHelper {
-    private ArrayList<Printer> printerArrayList;
+    private ArrayList<Printer> availablePrinters, printerArrayList;
+    private ArrayList<String> names;
     private ArrayList<String[]> fileContents;
+    private Context mContext;
     private String CSVOutputString;
 
-    public PrinterHelper() {
-        printerArrayList = new ArrayList<Printer>();
-        fileContents = new ArrayList<String[]>();
-        // First, populate the list of printers from the TODO: database
+    public PrinterHelper(Context context) {
+        availablePrinters = new ArrayList<>();
+        printerArrayList = new ArrayList<>();
+        names = new ArrayList<>();
+        fileContents = new ArrayList<>();
+        mContext = context;
+        // First, populate the list of printers from the database
         populatePrinterList();
         // Then, get printer status information from online CSV
         fetchPrinterList();
@@ -68,12 +80,17 @@ public class PrinterHelper {
         fileContents.remove(0);
         Printer p;
         for (String[] printerInfoArray : fileContents) {
-            // TODO: implement checks against printer list
             // if the printer with name printerInfoArray[0] is in the list populated by the
             //  database, then update that printer with status code printerInfoArray[statusIndex]
-            p = new Printer(printerInfoArray[0]);
-            p.setStatusCode(Integer.parseInt(printerInfoArray[statusIndex]));
-            printerArrayList.add(p);
+            int position = names.indexOf(printerInfoArray[0]);
+            if (position != -1) {
+                int code = Integer.parseInt(printerInfoArray[statusIndex]);
+                printerArrayList.get(position).setStatusCode(code);
+                // To have a separate List for available printers
+                if (code == 0) {
+                    availablePrinters.add(printerArrayList.get(position));
+                }
+            }
         }
         // Sort printers based on name, see Printer.compareTo method
         Collections.sort(printerArrayList);
@@ -81,9 +98,47 @@ public class PrinterHelper {
 
     /**
      * Pulls records from the database and adds them to the list of printers.
+     *
+     * All database access happens here.
      */
     private void populatePrinterList() {
+        // Copy database from the assets folder to internal storage.
+        String dir = mContext.getFilesDir().getPath() + mContext.getPackageName() + "/databases/";
+        String path = dir + "printers.db";
+        File newFile = new File(path);
+        if (!newFile.exists()) {
+            File directory = new File(path);
+            directory.mkdirs();
+            try {
+                copyDB(mContext.getAssets().open("printers.db"), new FileOutputStream(path));
+            } catch (IOException ex) {
+                Toast.makeText(mContext, "Can't copy printers.db", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(mContext, "printers exists", Toast.LENGTH_LONG).show();
+        }
+        PrinterDataSource dataSource = new PrinterDataSource(mContext);
+        dataSource.open();
+        printerArrayList = dataSource.getAllRecords();
+        names = dataSource.getNames();
+        dataSource.close();
+    }
 
+    /**
+     * copies a database from the assets folder. Copied verbatim from in-class example.
+     *
+     * @param in InputStream for existing database
+     * @param out OutputStream for new database location
+     * @throws IOException
+     */
+    public void copyDB(InputStream in, OutputStream out) throws IOException {
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = in.read(buffer)) > 0) {
+            out.write(buffer, 0, length);
+        }
+        in.close();
+        out.close();
     }
 
     /**
@@ -106,19 +161,7 @@ public class PrinterHelper {
         }
     }
 
-    /**
-     * returns an ArrayList of printers that are "available" i.e. status code is 0
-     * TODO: refactor this into handleCSVString or another method
-     *
-     * @return ArrayList of printers with status code 0
-     */
     public ArrayList<Printer> getAvailablePrinters() {
-        ArrayList<Printer> availablePrinters = new ArrayList<Printer>();
-        for (Printer p : printerArrayList) {
-            if (p.getStatusCode() == 0) {
-                availablePrinters.add(p);
-            }
-        }
         return availablePrinters;
     }
 
