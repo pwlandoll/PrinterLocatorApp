@@ -107,19 +107,11 @@ public class PrinterHelper {
         String dir = mContext.getFilesDir().getPath() + mContext.getPackageName() + "/databases/";
         //String dir = "/data/data/" + mContext.getPackageName() + "/databases/";
         String path = dir + "printers.db";
-        String fullpath = "/data/data/edu.jcu.plandoll16.printerlocator/databases/printers.db";
-        File databaseFile = new File(fullpath);
+        //String fullpath = "/data/data/edu.jcu.plandoll16.printerlocator/databases/printers.db";
+        File databaseFile = new File(path);
         databaseFile.mkdirs();
-        databaseFile.setWritable(true);
-        if (databaseFile.exists()) {
-            databaseFile.delete();
-            databaseFile = new File(fullpath);
-        }
-        if (databaseFile.isDirectory()) {
-            databaseFile.delete();
-        }
         try {
-            copyDB(mContext.getAssets().open("printers.db"), new FileOutputStream(fullpath));
+            copyDB(mContext.getAssets().open("printers.db"), new FileOutputStream(databaseFile));
         } catch (IOException ex) {
             Toast.makeText(mContext, "Can't copy printers.db", Toast.LENGTH_LONG).show();
         }
@@ -148,6 +140,7 @@ public class PrinterHelper {
             out.write(buffer, 0, length);
         }
         in.close();
+        out.flush();
         out.close();
     }
 

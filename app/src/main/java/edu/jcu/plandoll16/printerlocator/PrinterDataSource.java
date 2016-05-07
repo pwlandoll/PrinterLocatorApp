@@ -31,13 +31,15 @@ public class PrinterDataSource {
 
     public ArrayList<Printer> getAllRecords() {
         ArrayList<Printer> printers = new ArrayList<>();
-        Cursor cursor = database.query(PrinterSQLiteHelper.TABLE_NAME, cols, null, null, null, null, null);
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            Printer p = cursorToRecord(cursor);
-            printers.add(p);
-            names.add(p.getName());
-            cursor.moveToNext();
+        //Cursor cursor = database.query(PrinterSQLiteHelper.TABLE_NAME, cols, null, null, null, null, null);
+        Cursor cursor = database.rawQuery("SELECT * FROM printers;", null);
+        if (cursor.moveToFirst()) {
+            do {
+                Printer p = cursorToRecord(cursor);
+                printers.add(p);
+                names.add(p.getName());
+                cursor.moveToNext();
+            } while (cursor.moveToNext());
         }
         cursor.close();
         return printers;

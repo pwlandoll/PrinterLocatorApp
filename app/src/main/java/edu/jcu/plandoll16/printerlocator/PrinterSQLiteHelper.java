@@ -29,8 +29,7 @@ public class PrinterSQLiteHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db)
-    {
+    public void onCreate(SQLiteDatabase db) {
         try
         {
             db.execSQL(DB_CREATE);
@@ -48,6 +47,5 @@ public class PrinterSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
-
 }
 
