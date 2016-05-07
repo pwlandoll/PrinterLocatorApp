@@ -6,6 +6,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class PrinterDataSource {
     private ArrayList<String> names;
@@ -38,7 +39,6 @@ public class PrinterDataSource {
                 Printer p = cursorToRecord(cursor);
                 printers.add(p);
                 names.add(p.getName());
-                cursor.moveToNext();
             } while (cursor.moveToNext());
         }
         cursor.close();

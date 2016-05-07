@@ -20,7 +20,7 @@ public class DisplayPrinterActivity extends AppCompatActivity {
         Intent mIntent = this.getIntent();
         try {
             printerNameTextView.setText(mIntent.getStringExtra("edu.jcu.plandoll16.PrinterLocator.printerName"));
-            printerDesTextView.setText(mIntent.getStringExtra("edu.jcu.plandoll16.PrinterLocator.printerDes"));
+            printerDesTextView.setText(mIntent.getStringExtra("edu.jcu.plandoll16.PrinterLocator.printerDescription"));
         } catch (Exception ex) {
             Log.e("DisplayPrinterActivity", ex.getMessage());
         }

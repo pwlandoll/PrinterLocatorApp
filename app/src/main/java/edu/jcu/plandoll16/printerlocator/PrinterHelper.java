@@ -79,7 +79,6 @@ public class PrinterHelper {
         }
         // We don't need the header row of the CSV, so remove it
         fileContents.remove(0);
-        Printer p;
         for (String[] printerInfoArray : fileContents) {
             // if the printer with name printerInfoArray[0] is in the list populated by the
             //  database, then update that printer with status code printerInfoArray[statusIndex]
@@ -95,6 +94,7 @@ public class PrinterHelper {
         }
         // Sort printers based on name, see Printer.compareTo method
         Collections.sort(printerArrayList);
+        Collections.sort(availablePrinters);
     }
 
     /**
