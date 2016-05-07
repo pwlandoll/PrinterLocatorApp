@@ -34,7 +34,7 @@ public class FindNearestPrinterActivity extends AppCompatActivity implements Loc
 
         printerLinearLayout = (LinearLayout)findViewById(R.id.printerLinearLayout);
         mLocationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-        mPrinterHelper = new PrinterHelper();
+        mPrinterHelper = new PrinterHelper(getApplicationContext());
         waitTextView = (TextView)findViewById(R.id.waitTextView);
         securityErrorToast = Toast.makeText(getBaseContext(), "App is unable to access location " +
                 "services - please enable location services and try again.", Toast.LENGTH_LONG);

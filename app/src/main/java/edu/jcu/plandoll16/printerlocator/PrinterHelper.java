@@ -1,6 +1,7 @@
 package edu.jcu.plandoll16.printerlocator;
 
 import android.content.Context;
+import android.database.SQLException;
 import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
@@ -104,24 +105,33 @@ public class PrinterHelper {
     private void populatePrinterList() {
         // Copy database from the assets folder to internal storage.
         String dir = mContext.getFilesDir().getPath() + mContext.getPackageName() + "/databases/";
+        //String dir = "/data/data/" + mContext.getPackageName() + "/databases/";
         String path = dir + "printers.db";
-        File newFile = new File(path);
-        if (!newFile.exists()) {
-            File directory = new File(path);
-            directory.mkdirs();
-            try {
-                copyDB(mContext.getAssets().open("printers.db"), new FileOutputStream(path));
-            } catch (IOException ex) {
-                Toast.makeText(mContext, "Can't copy printers.db", Toast.LENGTH_LONG).show();
-            }
-        } else {
-            Toast.makeText(mContext, "printers exists", Toast.LENGTH_LONG).show();
+        String fullpath = "/data/data/edu.jcu.plandoll16.printerlocator/databases/printers.db";
+        File databaseFile = new File(fullpath);
+        databaseFile.mkdirs();
+        databaseFile.setWritable(true);
+        if (databaseFile.exists()) {
+            databaseFile.delete();
+            databaseFile = new File(fullpath);
+        }
+        if (databaseFile.isDirectory()) {
+            databaseFile.delete();
+        }
+        try {
+            copyDB(mContext.getAssets().open("printers.db"), new FileOutputStream(fullpath));
+        } catch (IOException ex) {
+            Toast.makeText(mContext, "Can't copy printers.db", Toast.LENGTH_LONG).show();
         }
         PrinterDataSource dataSource = new PrinterDataSource(mContext);
-        dataSource.open();
-        printerArrayList = dataSource.getAllRecords();
-        names = dataSource.getNames();
-        dataSource.close();
+        try {
+            dataSource.open();
+            printerArrayList = dataSource.getAllRecords();
+            names = dataSource.getNames();
+            dataSource.close();
+        } catch (Exception ex) {
+            Log.e("Database error?", ex.getMessage());
+        }
     }
 
     /**

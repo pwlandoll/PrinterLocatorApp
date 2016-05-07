@@ -25,7 +25,7 @@ public class ListAllPrintersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_all_printers);
 
         printerListLinearLayout = (LinearLayout)findViewById(R.id.printerListLinearLayout);
-        mPrinterHelper = new PrinterHelper();
+        mPrinterHelper = new PrinterHelper(getApplicationContext());
 
         LinearLayout mLayout;
         ArrayList<Printer> allPrinters = mPrinterHelper.getAvailablePrinters();

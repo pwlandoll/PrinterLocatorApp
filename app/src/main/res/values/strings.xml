@@ -22,7 +22,7 @@
     <string name="lsc">LSC</string>
     <string name="more">More info</string>
     <string name="none">No nearby printers found. Please check your Internet connection.</string>
-    <string name="omalley">O'Malley</string>
+    <string name="omalley">O\'Malley</string>
     <string name="printerDes">Printer Description:</string>
     <string name="printerName">Printer Name:</string>
     <string name="statusCode">Printer Status Code:</string>

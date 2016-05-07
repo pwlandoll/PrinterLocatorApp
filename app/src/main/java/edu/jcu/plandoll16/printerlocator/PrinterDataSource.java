@@ -22,6 +22,7 @@ public class PrinterDataSource {
 
     public void open() throws SQLException {
         database = dbHelper.getReadableDatabase();
+        //database = dbHelper.getWritableDatabase();
     }
 
     public void close() {
