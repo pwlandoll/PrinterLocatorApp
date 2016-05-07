@@ -32,7 +32,7 @@ public class ListAllPrintersActivity extends AppCompatActivity {
         for (Printer p : allPrinters) {
             // mPrinter must be final so the onClick method in the listener can access it
             final Printer mPrinter = p;
-            mLayout = mPrinter.getPrinterLayout(getBaseContext());
+            mLayout = mPrinter.getPrinterLayout(getApplicationContext());
             ((TextView)mLayout.getChildAt(0)).setTextColor(getResources().getColor(R.color.black));
             mLayout.getChildAt(1).setOnClickListener(new View.OnClickListener() {
                 @Override

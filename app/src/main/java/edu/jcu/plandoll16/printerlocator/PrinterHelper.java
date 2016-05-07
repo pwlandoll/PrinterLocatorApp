@@ -83,7 +83,7 @@ public class PrinterHelper {
         for (String[] printerInfoArray : fileContents) {
             // if the printer with name printerInfoArray[0] is in the list populated by the
             //  database, then update that printer with status code printerInfoArray[statusIndex]
-            int position = names.indexOf(printerInfoArray[0]);
+            int position = names.indexOf(printerInfoArray[0].replaceAll("\\$", ""));
             if (position != -1) {
                 int code = Integer.parseInt(printerInfoArray[statusIndex]);
                 printerArrayList.get(position).setStatusCode(code);
@@ -104,16 +104,19 @@ public class PrinterHelper {
      */
     private void populatePrinterList() {
         // Copy database from the assets folder to internal storage.
-        String dir = mContext.getFilesDir().getPath() + mContext.getPackageName() + "/databases/";
-        //String dir = "/data/data/" + mContext.getPackageName() + "/databases/";
-        String path = dir + "printers.db";
-        //String fullpath = "/data/data/edu.jcu.plandoll16.printerlocator/databases/printers.db";
+        //String dir = mContext.getFilesDir() + "/databases/";
+        String dir = "/data/data/" + mContext.getPackageName() + "/databases/";
+        String path = dir + "printer.db";
+        //String fullpath = "/data/data/edu.jcu.plandoll16.printerlocator/databases/printer.db";
         File databaseFile = new File(path);
-        databaseFile.mkdirs();
+        if (databaseFile.exists()) {
+            databaseFile.mkdirs();
+            databaseFile.delete();
+        }
         try {
-            copyDB(mContext.getAssets().open("printers.db"), new FileOutputStream(databaseFile));
+            copyDB(mContext.getAssets().open("printer.db"), new FileOutputStream(path));
         } catch (IOException ex) {
-            Toast.makeText(mContext, "Can't copy printers.db", Toast.LENGTH_LONG).show();
+            Toast.makeText(mContext, "Can't copy printer.db", Toast.LENGTH_LONG).show();
         }
         PrinterDataSource dataSource = new PrinterDataSource(mContext);
         try {
@@ -139,9 +142,9 @@ public class PrinterHelper {
         while ((length = in.read(buffer)) > 0) {
             out.write(buffer, 0, length);
         }
-        in.close();
         out.flush();
         out.close();
+        in.close();
     }
 
     /**

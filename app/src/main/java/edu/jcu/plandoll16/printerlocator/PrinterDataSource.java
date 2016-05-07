@@ -21,8 +21,8 @@ public class PrinterDataSource {
     }
 
     public void open() throws SQLException {
-        database = dbHelper.getReadableDatabase();
-        //database = dbHelper.getWritableDatabase();
+        //database = dbHelper.getReadableDatabase();
+        database = dbHelper.getWritableDatabase();
     }
 
     public void close() {
@@ -31,8 +31,8 @@ public class PrinterDataSource {
 
     public ArrayList<Printer> getAllRecords() {
         ArrayList<Printer> printers = new ArrayList<>();
-        //Cursor cursor = database.query(PrinterSQLiteHelper.TABLE_NAME, cols, null, null, null, null, null);
-        Cursor cursor = database.rawQuery("SELECT * FROM printers;", null);
+        Cursor cursor = database.query(PrinterSQLiteHelper.TABLE_NAME, cols, null, null, null, null, null);
+        //Cursor cursor = database.rawQuery("SELECT * FROM printers;", null);
         if (cursor.moveToFirst()) {
             do {
                 Printer p = cursorToRecord(cursor);

@@ -14,7 +14,7 @@ public class PrinterSQLiteHelper extends SQLiteOpenHelper {
     public static final String LON = "longitude";
     public static final String DES = "description";
     public static final String BUILD = "building";
-    private static final String DATABASE_NAME = "printers.db";
+    private static final String DATABASE_NAME = "printer.db";
     private static final int DATABASE_VERSION = 1;
     private static final String DB_CREATE = "create table " + TABLE_NAME + "(" +
             KEY + " integer primary key autoincrement," +
@@ -36,7 +36,7 @@ public class PrinterSQLiteHelper extends SQLiteOpenHelper {
         }
         catch (SQLException ex)
         {
-            Log.d("SQL Error", "Cannot create printers.db database");
+            Log.d("SQL Error", "Cannot create printer.db database");
         }
     }
 
