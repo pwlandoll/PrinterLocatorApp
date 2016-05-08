@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view necessary for being an onClick method.
      */
     public void listAllPrinters(View view) {
-        Intent mIntent = new Intent(view.getContext(), ListAllPrintersActivity.class);
+        Intent mIntent = new Intent(view.getContext(), AllPrinterFilterActivity.class);
         startActivity(mIntent);
     }
 

@@ -104,10 +104,8 @@ public class PrinterHelper {
      */
     private void populatePrinterList() {
         // Copy database from the assets folder to internal storage.
-        //String dir = mContext.getFilesDir() + "/databases/";
         String dir = "/data/data/" + mContext.getPackageName() + "/databases/";
         String path = dir + "printer.db";
-        //String fullpath = "/data/data/edu.jcu.plandoll16.printerlocator/databases/printer.db";
         File databaseFile = new File(path);
         if (databaseFile.exists()) {
             databaseFile.mkdirs();
@@ -130,7 +128,7 @@ public class PrinterHelper {
     }
 
     /**
-     * copies a database from the assets folder. Copied verbatim from in-class example.
+     * copies a database from the assets folder.
      *
      * @param in InputStream for existing database
      * @param out OutputStream for new database location
