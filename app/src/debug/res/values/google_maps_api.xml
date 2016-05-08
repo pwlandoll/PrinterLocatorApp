@@ -1,0 +1,8 @@
+<resources>
+    <!--
+    8C:E4:03:C1:18:09:C5:03:BC:32:62:21:BE:80:C7:B7:A1:BC:3D:74;edu.jcu.plandoll16.printerlocator
+    -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
+         AIzaSyCNe-O-NYPEJ81iufLxSNNrLk-HyRUeVP8
+    </string>
+</resources>

@@ -20,6 +20,7 @@
         To ensure accurate measurements, please make sure that location services are enabled.
     </string>
     <string name="lsc">LSC</string>
+    <string name="map">Show on Google Maps</string>
     <string name="more">More info</string>
     <string name="none">No nearby printers found. Please check your Internet connection.</string>
     <string name="omalley">O\'Malley</string>
@@ -27,4 +28,5 @@
     <string name="printerName">Printer Name:</string>
     <string name="statusCode">Printer Status Code:</string>
     <string name="wait">Waiting for location data…</string>
+    <string name="title_activity_display_printer_on_map">Location of Printer</string>
 </resources>

@@ -24,7 +24,18 @@
         <activity android:name=".ListAllPrintersActivity" />
         <activity android:name=".FindNearestPrinterActivity" />
         <activity android:name=".DisplayPrinterActivity" />
-        <activity android:name=".AllPrinterFilterActivity"></activity>
+        <activity android:name=".AllPrinterFilterActivity" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".DisplayPrinterOnMapActivity"
+            android:label="@string/title_activity_display_printer_on_map">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.jcu.plandoll16.printerlocator.DisplayPrinterActivity" />
+        </activity>
     </application>
 
 </manifest>

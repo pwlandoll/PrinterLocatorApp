@@ -49,6 +49,8 @@ public class ListAllPrintersActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent mIntent = new Intent(getApplicationContext(), DisplayPrinterActivity.class);
+                    mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.latitude", mPrinter.getLocationLatitude());
+                    mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.longitude", mPrinter.getLocationLongitude());
                     mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.printerName", mPrinter.getName());
                     mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.printerDescription", mPrinter.getDescription());
                     startActivity(mIntent);

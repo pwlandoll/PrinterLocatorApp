@@ -105,6 +105,8 @@ public class FindNearestPrinterActivity extends AppCompatActivity implements Loc
             @Override
             public void onClick(View v) {
                 Intent mIntent = new Intent(getApplicationContext(), DisplayPrinterActivity.class);
+                mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.latitude", closestPrinter.getLocationLatitude());
+                mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.longitude", closestPrinter.getLocationLongitude());
                 mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.printerName", closestPrinter.getName());
                 mIntent.putExtra("edu.jcu.plandoll16.PrinterLocator.printerDescription", closestPrinter.getDescription());
                 startActivity(mIntent);
