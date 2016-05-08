@@ -15,7 +15,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
  * Maps Activity for showing the location of a printer, taken from DisplayPrinterActivity.
  *
  * @author Peter Landoll
- * @version 0.1
+ * @version 0.9
  * @since 2016-5-7
  */
 public class DisplayPrinterOnMapActivity extends FragmentActivity implements OnMapReadyCallback {

@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * Activity for listing all available printers, with optional filter given by AllPrinterFilterActivity.
  *
  * @author Peter Landoll
- * @version 0.1
+ * @version 0.9
  * @since 2016-4-27
  */
 public class ListAllPrintersActivity extends AppCompatActivity {

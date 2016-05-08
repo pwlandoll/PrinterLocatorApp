@@ -12,7 +12,7 @@ import android.widget.TextView;
  * Activity for displaying information on an individual printer.
  *
  * @author Peter Landoll
- * @version 0.1
+ * @version 0.9
  * @since 2016-5-1
  */
 public class DisplayPrinterActivity extends AppCompatActivity {

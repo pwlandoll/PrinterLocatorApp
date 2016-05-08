@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * Activity for finding and displaying the nearest printer to the user's location.
  *
  * @author Peter Landoll
- * @version 0.1
+ * @version 0.9
  * @since 2016-4-30
  */
 public class FindNearestPrinterActivity extends AppCompatActivity implements LocationListener {
