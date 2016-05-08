@@ -114,7 +114,6 @@ public class PrinterHelper {
             databaseFile.delete();
         }
         try {
-            // TODO: Fix where this is giving the error that printers already exists
             copyDB(mContext.getAssets().open("printer.db"), new FileOutputStream(path));
         } catch (IOException ex) {
             Toast.makeText(mContext, "Can't copy printer.db", Toast.LENGTH_LONG).show();
@@ -170,10 +169,5 @@ public class PrinterHelper {
 
     public ArrayList<Printer> getAvailablePrinters() {
         return availablePrinters;
-    }
-
-    // TODO: remove
-    public ArrayList<Printer> getPrinterArrayList() {
-        return printerArrayList;
     }
 }

@@ -134,6 +134,16 @@ public class FindNearestPrinterActivity extends AppCompatActivity implements Loc
         }
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
     // The following methods are necessary, but empty, overridden methods for the LocationListener interface.
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {}

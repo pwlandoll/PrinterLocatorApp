@@ -65,4 +65,14 @@ public class AllPrinterFilterActivity extends AppCompatActivity {
             startActivity(mIntent);
         }
     };
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 }

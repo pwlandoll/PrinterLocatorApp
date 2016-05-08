@@ -26,7 +26,7 @@ public class PrinterSQLiteHelper extends SQLiteOpenHelper {
     public static final String BUILD = "building";
     private static final String DATABASE_NAME = "printer.db";
     private static final int DATABASE_VERSION = 1;
-    private static final String DB_CREATE = "create table " + TABLE_NAME + "(" +
+    private static final String DB_CREATE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "(" +
             KEY + " integer primary key autoincrement," +
             NAME + " text not null," +
             LAT + " decimal," +

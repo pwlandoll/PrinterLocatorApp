@@ -40,5 +40,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(mIntent);
     }
 
-    // TODO: override start/stop
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 }
