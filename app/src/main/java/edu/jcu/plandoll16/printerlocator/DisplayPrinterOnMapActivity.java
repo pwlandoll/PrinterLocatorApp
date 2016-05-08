@@ -12,6 +12,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 /**
+ * Maps Activity for showing the location of a printer, taken from DisplayPrinterActivity.
+ *
  * @author Peter Landoll
  * @version 0.1
  * @since 2016-5-7

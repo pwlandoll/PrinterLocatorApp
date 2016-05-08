@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -16,6 +16,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 /**
+ * Activity for finding and displaying the nearest printer to the user's location.
+ *
  * @author Peter Landoll
  * @version 0.1
  * @since 2016-4-30
@@ -25,7 +27,6 @@ public class FindNearestPrinterActivity extends AppCompatActivity implements Loc
     LocationManager mLocationManager;
     PrinterHelper mPrinterHelper;
     TextView waitTextView;
-    Toast securityErrorToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,19 +37,13 @@ public class FindNearestPrinterActivity extends AppCompatActivity implements Loc
         mLocationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         mPrinterHelper = new PrinterHelper(getApplicationContext());
         waitTextView = (TextView)findViewById(R.id.waitTextView);
-        securityErrorToast = Toast.makeText(getBaseContext(), "App is unable to access location " +
-                "services - please enable location services and try again.", Toast.LENGTH_LONG);
 
-        // TODO: try/catch necessary for permission errors?
-        try {
-            Location location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            if (location != null && location.getTime() > System.currentTimeMillis() - 2 * 60 * 1000) {
-                locationFound(location);
-            } else {
-                mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-            }
-        } catch (SecurityException secEx) {
-            securityErrorToast.show();
+        Location location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        // We only want old locations if they're within the last two minutes
+        if (location != null && location.getTime() > System.currentTimeMillis() - 2 * 60 * 1000) {
+            locationFound(location);
+        } else {
+            mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
         }
     }
 
@@ -132,8 +127,6 @@ public class FindNearestPrinterActivity extends AppCompatActivity implements Loc
             try {
                 // We only want to get the user's location once per launch of this activity.
                 mLocationManager.removeUpdates(this);
-            } catch (SecurityException secEx) {
-                securityErrorToast.show();
             } catch (Exception ex) {
                 Log.e("Other Location Error", ex.getMessage());
                 Toast.makeText(getBaseContext(), "ERROR - try restarting the app.", Toast.LENGTH_LONG).show();

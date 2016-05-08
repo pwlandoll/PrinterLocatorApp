@@ -11,6 +11,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
+ * Activity for listing all available printers, with optional filter given by AllPrinterFilterActivity.
+ *
  * @author Peter Landoll
  * @version 0.1
  * @since 2016-4-27
@@ -41,7 +43,7 @@ public class ListAllPrintersActivity extends AppCompatActivity {
             printersByBuilding = allPrinters;
         }
         for (Printer p : printersByBuilding) {
-            // mPrinter must be final so the onClick method in the listener can access it
+            // mPrinter must be made final so the onClick method in the listener can access it
             final Printer mPrinter = p;
             mLayout = mPrinter.getPrinterLayout(getApplicationContext());
             ((TextView)mLayout.getChildAt(0)).setTextColor(getResources().getColor(R.color.black));

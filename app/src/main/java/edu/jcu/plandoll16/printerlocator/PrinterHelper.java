@@ -18,6 +18,8 @@ import java.util.Collections;
 import java.util.Scanner;
 
 /**
+ * Class to coordinate functionality between PrinterDataSource and Printers.
+ *
  * @author Peter Landoll
  * @version 0.1
  * @since 2016-4-30
@@ -112,6 +114,7 @@ public class PrinterHelper {
             databaseFile.delete();
         }
         try {
+            // TODO: Fix where this is giving the error that printers already exists
             copyDB(mContext.getAssets().open("printer.db"), new FileOutputStream(path));
         } catch (IOException ex) {
             Toast.makeText(mContext, "Can't copy printer.db", Toast.LENGTH_LONG).show();
@@ -169,6 +172,7 @@ public class PrinterHelper {
         return availablePrinters;
     }
 
+    // TODO: remove
     public ArrayList<Printer> getPrinterArrayList() {
         return printerArrayList;
     }

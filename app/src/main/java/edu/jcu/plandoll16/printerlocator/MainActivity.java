@@ -39,4 +39,6 @@ public class MainActivity extends AppCompatActivity {
         Intent mIntent = new Intent(view.getContext(), FindNearestPrinterActivity.class);
         startActivity(mIntent);
     }
+
+    // TODO: override start/stop
 }

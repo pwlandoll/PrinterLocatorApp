@@ -6,6 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * Activity for selecting filters for ListAllPrintersActivity.
+ *
+ * @author Peter Landoll
+ * @version 0.1
+ * @since 2016-5-6
+ */
 public class AllPrinterFilterActivity extends AppCompatActivity {
     private Button allBuildingsButton, adminButton, bolerButton,
             dolanButton, libraryButton, lscButton, omalleyButton;

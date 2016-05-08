@@ -8,6 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * Activity for displaying information on an individual printer.
+ *
+ * @author Peter Landoll
+ * @version 0.1
+ * @since 2016-5-1
+ */
 public class DisplayPrinterActivity extends AppCompatActivity {
     private Button mapButton;
     private double latitude, longitude;
@@ -25,6 +32,7 @@ public class DisplayPrinterActivity extends AppCompatActivity {
 
         Intent mIntent = this.getIntent();
         try {
+            // name, latitude, and longitude necessary for map activity intent later
             latitude = mIntent.getDoubleExtra("edu.jcu.plandoll16.PrinterLocator.latitude", 0);
             longitude = mIntent.getDoubleExtra("edu.jcu.plandoll16.PrinterLocator.longitude", 0);
             name = mIntent.getStringExtra("edu.jcu.plandoll16.PrinterLocator.printerName");
@@ -34,6 +42,7 @@ public class DisplayPrinterActivity extends AppCompatActivity {
             Log.e("DisplayPrinterActivity", ex.getMessage());
         }
 
+        // name, latitude, and longitude are necessary for putting a marker on the map
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
