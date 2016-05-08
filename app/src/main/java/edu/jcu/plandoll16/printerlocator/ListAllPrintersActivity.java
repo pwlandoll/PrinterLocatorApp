@@ -32,7 +32,12 @@ public class ListAllPrintersActivity extends AppCompatActivity {
         LinearLayout mLayout;
         ArrayList<Printer> allPrinters = mPrinterHelper.getAvailablePrinters();
         ArrayList<Printer> printersByBuilding = new ArrayList<>();
-        String building = this.getIntent().getStringExtra("edu.jcu.plandoll16.PrinterLocator.building");
+        String building;
+        try {
+            building = this.getIntent().getStringExtra("edu.jcu.plandoll16.PrinterLocator.building");
+        } catch (Exception ex) {
+            building = "";
+        }
         if (building != null && !building.equals("all") && !building.equals("")) {
             for (Printer p : allPrinters) {
                 if (p.getBuilding().equals(building)) {

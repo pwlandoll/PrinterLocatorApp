@@ -32,16 +32,6 @@ public class Printer implements Comparable<Printer> {
     /**
      * Constructor.
      *
-     * Default location is the middle of the Admin building.
-     * @param name name of the printer
-     */
-    public Printer(String name) {
-        this(0, name, 41.490150, -81.531329);
-    }
-
-    /**
-     * Constructor.
-     *
      * @param name name of the printer
      * @param locationLatitude latitude of the location of the printer
      * @param locationLongitude longitude of the location of the printer

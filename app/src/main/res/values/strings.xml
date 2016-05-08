@@ -2,7 +2,7 @@
     <string name="app_name">Printer Locator</string>
     <string name="admin">Admin</string>
     <string name="allBuildings">All buildings</string>
-    <string name="allPrinters">All printers (scroll to see more)</string>
+    <string name="allPrinters">List of printers (scroll to see more):</string>
     <string name="banner">Locate the nearest printer!</string>
     <string name="boler">Boler</string>
     <string name="chooseBuilding">Choose to filter by building:</string>
@@ -12,7 +12,8 @@
     <string name="google_app_id">eng-contact-130523</string>
     <string name="help">For help or support, email plandoll16@jcu.edu.</string>
     <string name="helpAndReport">
-        For help or support, email plandoll16@jcu.edu.\nIf there is a problem with the printer, please contact the ITS Helpdesk at helpdesk@jcu.edu or (216) 397-3005.
+        For help or support, email plandoll16@jcu.edu.\n
+        If there is a problem with the printer, please contact the ITS Helpdesk at helpdesk@jcu.edu or (216) 397-3005.
     </string>
     <string name="library">Library</string>
     <string name="listAllPrinters">List all available printers</string>
