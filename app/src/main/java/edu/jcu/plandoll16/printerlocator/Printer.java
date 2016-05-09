@@ -12,7 +12,7 @@ import android.widget.TextView;
  * Each printer has variables corresponding to the fields of the SQLite database.
  *
  * @author Peter Landoll <plandoll16@jcu.edu>
- * @version 0.9
+ * @version 1.0
  * @since 2016-4-12
  */
 public class Printer implements Comparable<Printer> {

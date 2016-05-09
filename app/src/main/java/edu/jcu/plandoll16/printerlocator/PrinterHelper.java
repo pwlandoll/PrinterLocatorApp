@@ -21,7 +21,7 @@ import java.util.Scanner;
  * Class to coordinate functionality between PrinterDataSource and Printers.
  *
  * @author Peter Landoll
- * @version 0.9
+ * @version 1.0
  * @since 2016-4-30
  */
 public class PrinterHelper {

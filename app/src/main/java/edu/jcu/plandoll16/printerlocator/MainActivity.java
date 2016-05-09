@@ -10,7 +10,7 @@ import android.widget.Button;
  * Main Activity class.
  *
  * @author Peter Landoll <plandoll16@jcu.edu>
- * @version 0.9
+ * @version 1.0
  * @since 2016-4-12
  */
 public class MainActivity extends AppCompatActivity {

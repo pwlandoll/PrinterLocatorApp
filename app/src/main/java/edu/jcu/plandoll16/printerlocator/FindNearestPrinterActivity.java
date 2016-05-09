@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * Activity for finding and displaying the nearest printer to the user's location.
  *
  * @author Peter Landoll
- * @version 0.9
+ * @version 1.0
  * @since 2016-4-30
  */
 public class FindNearestPrinterActivity extends AppCompatActivity implements LocationListener {
@@ -73,22 +73,25 @@ public class FindNearestPrinterActivity extends AppCompatActivity implements Loc
     private void locationFound(Location location) {
         // Change top text since location is found, then proceed to calculate distances
         waitTextView.setText(R.string.found);
-        // We only want available printers here, not all printers
         ArrayList<Printer> availablePrinters = mPrinterHelper.getAvailablePrinters();
         for (Printer p : availablePrinters) {
             p.setDistance(distance(location.getLatitude(), location.getLongitude(), p.getLocationLatitude(), p.getLocationLongitude()));
         }
-        int smallestIndex = 0;
         if (availablePrinters.size() == 0) {
             // In this case, PrinterHelper failed to make a list of any available printers
             // Serves as error handling for the .join() in PrinterHelper's fetchPrinterList
             waitTextView.setText(R.string.none);
             return;
         }
+        // Find the index of the closest printer
         double smallestDistance = availablePrinters.get(0).getDistance();
+        double thisDistance;
+        int smallestIndex = 0;
         for (int i = 0; i < availablePrinters.size(); i++) {
-            if (availablePrinters.get(i).getDistance() < smallestDistance) {
+            thisDistance = availablePrinters.get(i).getDistance();
+            if (thisDistance < smallestDistance) {
                 smallestIndex = i;
+                smallestDistance = thisDistance;
             }
         }
         // Closest printer is availablePrinters.get(smallestIndex)
@@ -117,7 +120,7 @@ public class FindNearestPrinterActivity extends AppCompatActivity implements Loc
      * the location once, we don't want to keep calculating the nearest printer. The user will be
      * able to refresh to enable locations once again.
      *
-     * @param location
+     * @param location user's found location
      */
     @Override
     public void onLocationChanged(Location location) {

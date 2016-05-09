@@ -13,7 +13,7 @@ import android.util.Log;
  * Otherwise, based on the in-class example.
  *
  * @author Peter Landoll
- * @version 0.9
+ * @version 1.0
  * @since 2016-5-6
  */
 public class PrinterSQLiteHelper extends SQLiteOpenHelper {

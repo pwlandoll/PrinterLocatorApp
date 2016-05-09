@@ -12,7 +12,7 @@ import java.util.Collections;
  * Class for communicating with the printer.db database via PrinterSQLiteHelper.
  *
  * @author Peter Landoll
- * @version 0.9
+ * @version 1.0
  * @since 2016-5-6
  */
 public class PrinterDataSource {
